@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weavy Test</title>
+
+    <!-- bootstrap css CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- fontawesome cdn link -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+</head>
+<body>
+<h1 class="text-center my-3">Weavy Test</h1>
+
+<div class="container my-5">
+    <button class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#saveModal"
+            id="btn-add-new-user">
+        Add New Users
+    </button>
+</div>
+
+<!-- DropDown for the Table -->
+<div class="container my-5">
+    <button class="btn btn-primary dropdown-toggle"
+            data-bs-toggle="modal"
+            data-bs-target="#saveModal"
+            id="table-dropdown">
+        Add New Users
+    </button>
+</div>
+
+
+<!-- Add User Modal -->
+<div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="saveModalLabel">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="save-user_id" class="form-label text-black">User ID</label>
+                        <input type="text" class="form-control shadow-none text-secondary" id="save-user_id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="save-name" class="form-label text-black">Name</label>
+                        <input type="text" class="form-control shadow-none text-secondary" id="save-name">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btn-save">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update User Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Update User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="update-user_id" class="form-label text-black">User ID</label>
+                        <input type="text" class="form-control shadow-none text-secondary" id="update-user_id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="update-name" class="form-label text-black">Name</label>
+                        <input type="text" class="form-control shadow-none text-secondary" id="update-name">
+                    </div>
+                    <button type="submit" class="btn btn-warning" id="btn-update">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete User Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content py-3">
+            <div class="modal-header border-0 d-flex flex-column align-items-center">
+                <div class="mb-3 py-2 px-2 bg-danger-subtle rounded-circle d-flex text-danger fs-4">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h5 class="modal-title" id="deleteModalLabel">
+                    Delete Confirmation
+                </h5>
+            </div>
+            <div class="modal-footer d-flex justify-content-center gap-3">
+                <button type="button" class="btn btn-secondary bg-secondary-subtle text-black border-0 rounded-pill"
+                        data-bs-dismiss="modal">
+                    No, Keep
+                </button>
+                <button type="button" class="btn btn-danger rounded-pill" id="confirm-delete-btn">
+                    Yes, Delete!
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Table -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody id="tbl-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- add bootstrap script CDN link -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+</script>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    getAllUsers();
+
+    function getAllUsers() {
+        $.ajax({
+            url: "https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users",
+            type: "GET",
+            headers: {
+                'Authorization': "Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq"
+            }, // identify the user
+
+            success: (res) => {
+                console.log(res);
+
+                const users = res.data;
+                console.log(users);
+
+                for (const user of users) {
+                    $("#tbl-body").append(`
+                    <tr>
+                        <td>${user.uid}</td>
+                        <td>${user.display_name}</td>
+                        <td>${user.created_at}</td>
+                        <th><button onclick="editUser('${user.uid}','${user.display_name}')" class="btn text-warning btn-sm">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button onclick="deleteUser()" class="btn text-danger btn-sm">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </th>
+                    </tr>
+                `);
+                }
+            },
+            error: (err) => {
+                console.log(err);
+            }
+
+        });
+    }
+
+    function editUser(uid, name) {
+
+        $("#update-user_id").val(uid);
+        $("#update-name").val(name);
+        $("#updateModal").modal("show");
+        getAllUsers();
+    }
+
+    function deleteUser() {
+        $("#deleteModal").modal("show");
+    }
+
+    // Add Users
+    $("#btn-save").click((e) => {
+        e.preventDefault();
+
+        const userId = $("#save-user_id").val();
+        const name = $("#save-name").val();
+
+        const userData = {
+            uid: userId,
+            name: name
+        };
+
+        $.ajax({
+            url: 'https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users',
+            type: 'POST',
+            headers: {
+                'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq',
+                'Content-Type': 'application/json'
+            }, // specify the content type
+
+            data: JSON.stringify(userData), // Convert the JavaScript object to JSON
+
+            success: (data) => {
+                console.log(data);
+                getAllUsers();
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    });
+
+    // Update Users
+    $("#btn-update").click((e) => {
+        e.preventDefault();
+
+        const userId = $("#update-user_id").val();
+        const name = $("#update-name").val();
+
+        const userData = {
+            uid: userId,
+            name: name
+        };
+
+        $.ajax({
+            // url: 'https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users/' + userId,
+            url: `https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users/${userId}`, // using template literal (backtick)
+            type: 'PUT', // use PUT or PATCH
+            headers: {
+                'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq',
+                'Content-Type': 'application/json'
+            }, // specify the content type
+
+            data: JSON.stringify(userData), // Convert the JavaScript object to JSON
+
+            success: (data) => {
+                console.log(data);
+                $("#updateModal").modal("hide");
+                alert("User Updated...!");
+                getAllUsers();
+            },
+            error: (error) => {
+                console.log(error);
+                alert("User Not Updated...!");
+            }
+        })
+    });
+
+    // Delete Users
+    $("#confirm-delete-btn").click(() => {
+
+        const userId = $("#update-user_id").val();
+
+        $.ajax({
+            url: `https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users/${userId}`,
+            type: 'DELETE', // we can't delete data from this server. Delete function isn't supported by this server
+            headers: {
+                'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq'}, // identify the user
+
+            success: (data) => {
+                console.log(data);
+                $("#deleteModal").modal("hide");
+                alert("User Deleted...!");
+                getAllUsers();
+            },
+            error: (error) => {
+                console.log(error);
+                alert("User Not Deleted...!");
+            }
+        });
+    });
+</script>
+</body>
+</html>
