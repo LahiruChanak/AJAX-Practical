@@ -20,23 +20,23 @@
 <body>
 <h1 class="text-center my-3">Weavy Test</h1>
 
-<div class="container my-5">
-    <button class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#saveModal"
-            id="btn-add-new-user">
-        Add New Users
-    </button>
+<div class="container my-5 d-flex gap-4">
+        <button class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#saveModal"
+                id="btn-add-new-user">
+            Add New Users
+        </button>
+
+        <select class="form-select w-auto shadow-none" id="dropdown-userId">
+            <option>Select User</option>
+        </select>
+
 </div>
 
-<!-- DropDown for the Table -->
+<!-- DropDown for the User ID -->
 <div class="container my-5">
-    <button class="btn btn-primary dropdown-toggle"
-            data-bs-toggle="modal"
-            data-bs-target="#saveModal"
-            id="table-dropdown">
-        Add New Users
-    </button>
+
 </div>
 
 
@@ -273,7 +273,8 @@
             url: `https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users/${userId}`,
             type: 'DELETE', // we can't delete data from this server. Delete function isn't supported by this server
             headers: {
-                'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq'}, // identify the user
+                'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq'
+            }, // identify the user
 
             success: (data) => {
                 console.log(data);
@@ -287,6 +288,25 @@
             }
         });
     });
+
+    // Get UserId for the dropdown
+    $.ajax({
+        url: "https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users",
+        type: "GET",
+        headers: {'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq'},
+        success: (res) => {
+            console.log(res);
+            const users = res.data;
+            console.log(users);
+            for (const user of users) {
+
+                $('#dropdown-userId').append(`<option value="">${user.uid}</option>`)
+            }
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    })
 </script>
 </body>
 </html>
