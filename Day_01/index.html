@@ -21,16 +21,16 @@
 <h1 class="text-center my-3">Weavy Test</h1>
 
 <div class="container my-5 d-flex gap-4">
-        <button class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#saveModal"
-                id="btn-add-new-user">
-            Add New Users
-        </button>
+    <button class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#saveModal"
+            id="btn-add-new-user">
+        Add New Users
+    </button>
 
-        <select class="form-select w-auto shadow-none" id="dropdown-userId">
-            <option>Select User</option>
-        </select>
+    <select class="form-select w-auto shadow-none" id="dropdown-userId">
+        <option>Select User</option>
+    </select>
 
 </div>
 
@@ -271,10 +271,10 @@
 
         $.ajax({
             url: `https://09b3f88b88e74187b81c5a9e3a2dd4fd.weavy.io/api/users/${userId}`,
-            type: 'DELETE', // we can't delete data from this server. Delete function isn't supported by this server
+            type: 'DELETE', // we can't delete data from this server. this server doesn't support delete function
             headers: {
-                'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq'
-            }, // identify the user
+                'Authorization': 'Bearer wys_NQivUaPIWXTZrhInuffrmYIcFY3iOl3xCpSq' // identify the user
+            },
 
             success: (data) => {
                 console.log(data);
