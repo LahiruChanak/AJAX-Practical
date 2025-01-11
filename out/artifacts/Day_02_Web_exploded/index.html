@@ -1,144 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>student Management System</title>
 
     <!-- bootstrap cdn link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
 
     <!-- fontawesome cdn link -->
     <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-</head>
+  </head>
 
-<body>
-<div class="container mt-5">
-    <h1 class="text-center">Student Management System</h1>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center">Student Management System</h1>
 
-    <hr/>
+      <hr />
 
-    <button type="button" class="btn btn-primary mb-3 text-right" data-bs-toggle="modal"
-            data-bs-target="#studentModal">
+      <button
+        type="button"
+        class="btn btn-primary mb-3 text-right"
+        data-bs-toggle="modal"
+        data-bs-target="#studentModal"
+      >
         Add Student
-    </button>
+      </button>
 
-    <!--     add student modal-->
-    <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+      <!--     add student modal-->
+      <div
+        class="modal fade"
+        id="studentModal"
+        tabindex="-1"
+        aria-labelledby="studentModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="container m-2">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="age" class="form-label">Age</label>
-                            <input type="number" class="form-control" id="age">
-                        </div>
-                        <button id="btn_save_student" type="submit" class="btn btn-primary">Save</button>
-                    </form>
+          <div class="modal-content">
+            <div class="container m-2">
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" />
                 </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="email" />
+                </div>
+                <div class="mb-3">
+                  <label for="age" class="form-label">Age</label>
+                  <input type="number" class="form-control" id="age" />
+                </div>
+                <button
+                  id="btn_save_student"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Save
+                </button>
+              </form>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Update student Modal -->
-    <div class="modal fade" id="updateStudentModal" tabindex="-1" aria-labelledby="updateStudentModalLabel"
-         aria-hidden="true">
+      <!-- Update student Modal -->
+      <div
+        class="modal fade"
+        id="updateStudentModal"
+        tabindex="-1"
+        aria-labelledby="updateStudentModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="container m-2">
-                    <form>
-                        <div class="mb-3">
-                            <label for="updated_student_id" class="form-label">student Id</label>
-                            <input type="text" class="form-control" id="updated_student_id" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="updated_name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="updated_name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="updated_email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="updated_email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="updated_age" class="form-label">Age</label>
-                            <input type="number" class="form-control" id="updated_age">
-                        </div>
-                        <button id="btn_update_student" type="submit" class="btn btn-primary">Update</button>
-                    </form>
+          <div class="modal-content">
+            <div class="container m-2">
+              <form>
+                <div class="mb-3">
+                  <label for="updated_student_id" class="form-label"
+                    >student Id</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="updated_student_id"
+                    readonly
+                  />
                 </div>
+                <div class="mb-3">
+                  <label for="updated_name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="updated_name" />
+                </div>
+                <div class="mb-3">
+                  <label for="updated_email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="updated_email" />
+                </div>
+                <div class="mb-3">
+                  <label for="updated_age" class="form-label">Age</label>
+                  <input type="number" class="form-control" id="updated_age" />
+                </div>
+                <button
+                  id="btn_update_student"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Update
+                </button>
+              </form>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Delete student Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <!-- Delete student Modal -->
+      <div
+        class="modal fade"
+        id="deleteModal"
+        tabindex="-1"
+        aria-labelledby="deleteModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
-            <div class="modal-content py-3">
-                <div class="modal-header border-0 d-flex flex-column align-items-center">
-                    <div class="mb-3 py-2 px-2 bg-danger-subtle rounded-circle d-flex text-danger fs-4">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                    <h5 class="modal-title" id="deleteModalLabel">
-                        Delete Confirmation
-                    </h5>
-                </div>
-                <div class="modal-footer d-flex justify-content-center gap-3">
-                    <button type="button" class="btn btn-secondary bg-secondary-subtle text-black border-0 rounded-pill"
-                            data-bs-dismiss="modal">
-                        No, Keep
-                    </button>
-                    <button type="button" class="btn btn-danger rounded-pill" id="confirm-delete-btn">
-                        Yes, Delete!
-                    </button>
-                </div>
+          <div class="modal-content py-3">
+            <div
+              class="modal-header border-0 d-flex flex-column align-items-center"
+            >
+              <div
+                class="mb-3 py-2 px-2 bg-danger-subtle rounded-circle d-flex text-danger fs-4"
+              >
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <h5 class="modal-title" id="deleteModalLabel">
+                Delete Confirmation
+              </h5>
             </div>
+            <div class="modal-footer d-flex justify-content-center gap-3">
+              <button
+                type="button"
+                class="btn btn-secondary bg-secondary-subtle text-black border-0 rounded-pill"
+                data-bs-dismiss="modal"
+              >
+                No, Keep
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger rounded-pill"
+                id="confirm-delete-btn"
+              >
+                Yes, Delete!
+              </button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <table class="table table-bordered text-center">
+      <table class="table table-bordered text-center">
         <thead>
-        <tr>
+          <tr>
             <td>ID</td>
             <td>Name</td>
             <td>Email</td>
             <td>Age</td>
             <td>Actions</td>
-        </tr>
+          </tr>
         </thead>
-        <tbody id="student_table_body">
+        <tbody id="student_table_body"></tbody>
+      </table>
+    </div>
 
-        </tbody>
-    </table>
-</div>
-<script src="js/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-
-    // Load students' data to the table
-    const fetchStudentData = () => {
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Load students' data to the table
+      const fetchStudentData = () => {
         $.ajax({
-            url: 'http://localhost:8080/Day_02_Web_exploded/student',
-            type: 'GET',
-            success: function (response) {
-                for (let i = 0; i < response.length; i++) {
-                    const student = response[i]
-                    const studentTable = $('#student_table_body').html()
-                    $('#student_table_body').html(studentTable + `<tr>
+          url: "http://localhost:8080/Day_02_Web_exploded/student",
+          type: "GET",
+          success: function (response) {
+            for (let i = 0; i < response.length; i++) {
+              const student = response[i];
+              const studentTable = $("#student_table_body").html();
+              $("#student_table_body").html(
+                studentTable +
+                  `<tr>
                         <td>${student.id}</td>
                         <td>${student.name}</td>
                         <td>${student.email}</td>
@@ -151,101 +205,113 @@
                             <i class="fa-regular fa-trash-can"></i>
                             </button>
                         </td>
-                    </tr>`);
-                }
-            },
-            error: function (error) {
-                console.log(error)
+                    </tr>`
+              );
             }
-        })
-    }
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      };
 
-    // Save students
-    $('#btn_save_student').click((e) => {
-        e.preventDefault()
-        const Student_name = $('#name').val()
-        const Student_email = $('#email').val()
-        const Student_age = $('#age').val()
+      // Save students
+      $("#btn_save_student").click((e) => {
+        e.preventDefault();
+        const Student_name = $("#name").val();
+        const Student_email = $("#email").val();
+        const Student_age = $("#age").val();
 
         const studentData = {
-            name, email, age
-        }
+          name,
+          email,
+          age,
+        };
         $.ajax({
-            url: 'http://localhost:8080/Day_02_Web_exploded/student',
-            type: 'POST',
-            data: {
-                name: Student_name,
-                email: Student_email,
-                age: Student_age
-            },
-            success: function (response) {
-                $("#student_table_body").empty();
-                fetchStudentData();
-                $('#studentModal').modal('hide');
-            },
-            error: function (error) {
-                console.log(error)
-            }
+          url: "http://localhost:8080/Day_02_Web_exploded/student",
+          type: "POST",
+          data: {
+            name: Student_name,
+            email: Student_email,
+            age: Student_age,
+          },
+          success: function (response) {
+            $("#student_table_body").empty();
+            fetchStudentData();
+            $("#studentModal").modal("hide");
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      });
 
-        })
-    })
+      // Update students
+      $("#btn_update_student").click((e) => {
+        e.preventDefault();
 
-    // Update students
-    $('#btn_update_student').click((e) => {
-        e.preventDefault()
-
-        const id = $('#updated_student_id').val()
-        const name = $('#updated_name').val()
-        const email = $('#updated_email').val()
-        const age = $('#updated_age').val()
+        const id = $("#updated_student_id").val();
+        const name = $("#updated_name").val();
+        const email = $("#updated_email").val();
+        const age = $("#updated_age").val();
 
         const studentData = {
-            id, name, email, age
-        }
+          id,
+          name,
+          email,
+          age,
+        };
         $.ajax({
-            url: 'http://localhost:8080/Day_02_Web_exploded/student?id=' + id + '&name=' + name + '&email=' + email + '&age=' + age,
-            type: 'PUT',
+          url:
+            "http://localhost:8080/Day_02_Web_exploded/student?id=" +
+            id +
+            "&name=" +
+            name +
+            "&email=" +
+            email +
+            "&age=" +
+            age,
+          type: "PUT",
+          success: function (response) {
+            $("#student_table_body").empty();
+            fetchStudentData();
+            $("#updateStudentModal").modal("hide");
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      });
+
+      const editStudent = (uid, name, email, age) => {
+        $("#updated_student_id").val(uid);
+        $("#updated_name").val(name);
+        $("#updated_email").val(email);
+        $("#updated_age").val(age);
+
+        $("#updateStudentModal").modal("show");
+      };
+
+      // Delete students
+      const deleteStudent = (id) => {
+        $("#deleteModal").modal("show");
+        $("#confirm-delete-btn").click(() => {
+          $.ajax({
+            url: "http://localhost:8080/Day_02_Web_exploded/student?id=" + id,
+            type: "DELETE",
             success: function (response) {
-                $("#student_table_body").empty();
-                fetchStudentData();
-                $('#updateStudentModal').modal('hide');
+              $("#student_table_body").empty();
+              fetchStudentData();
+              $("#deleteModal").modal("hide");
             },
             error: function (error) {
-                console.log(error)
-            }
-        })
-    })
+              console.log(error);
+            },
+          });
+        });
+      };
 
-    const editStudent = (uid, name, email, age) => {
-        $('#updated_student_id').val(uid)
-        $('#updated_name').val(name)
-        $('#updated_email').val(email)
-        $('#updated_age').val(age)
-
-        $('#updateStudentModal').modal('show')
-    }
-
-    // Delete students
-    const deleteStudent = (id) => {
-        $('#deleteModal').modal('show')
-        $('#confirm-delete-btn').click(() => {
-            $.ajax({
-                url: 'http://localhost:8080/Day_02_Web_exploded/student?id=' + id,
-                type: 'DELETE',
-                success: function (response) {
-                    $("#student_table_body").empty();
-                    fetchStudentData();
-                    $('#deleteModal').modal('hide');
-                },
-                error: function (error) {
-                    console.log(error)
-                }
-            })
-        })
-    }
-
-    fetchStudentData()
-</script>
-</body>
-
+      fetchStudentData();
+    </script>
+  </body>
 </html>
